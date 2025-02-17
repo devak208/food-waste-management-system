@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Popup from "./PopupComponents/popup";
 import DataContextAdmin from "../../Context/DataContextAdmin";
-import { MdEuro } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
@@ -216,7 +216,7 @@ export const AdminMenuCard = ({ item }) => {
               {item.name}
             </h1>
             <h2 className="flex items-center font-bold text-xl text-gray-700">
-              <MdEuro className="text-gray-700" />{" "}
+              <FaRupeeSign  className="text-gray-700" />{" "}
               <span>{item.price} only</span>
             </h2>
             <div>

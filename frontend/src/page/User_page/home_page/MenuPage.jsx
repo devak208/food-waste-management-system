@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useContext } from "react";
 import MenuHeader from "./MenuHeader";
-import MenuBanner from "./MenuBanner";
+/* import MenuBanner from "./MenuBanner"; */
 import MenuGrid from "./MenuGrid";
 import { useLocation } from "react-router-dom";
 import DataContextUser from "../../Context/DataContextUser";
@@ -20,7 +20,7 @@ const MenuPage = () => {
       {!isLoading && err === null && (
         <div>
           <MenuHeader />
-          <MenuBanner />
+          {/* <MenuBanner /> */}
           <MenuGrid />
         </div>
       )}

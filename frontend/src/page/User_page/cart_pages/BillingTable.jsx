@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { MdEuro } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 import Popup from "../../Admin_page/components/PopupComponents/popup";
 import DataContextUser from "../../Context/DataContextUser";
 import { isAunthenticated } from "../login_pages/services/auth";
@@ -111,7 +111,7 @@ const ConfirmPopup = ({
               Upload a screenshot of the payment as proof to avoid penalties.
             </p>
             <div className="flex items-center justify-center mt-4">
-              <MdEuro className="mr-1" />
+              <FaRupeeSign  className="mr-1" />
               <span className="text-lg font-semibold">
                 {totalPrice.toFixed(2)}
               </span>
@@ -213,7 +213,7 @@ const BillingTable = () => {
                     <th className="py-2 px-2 text-center text-sm">Name</th>
                     <th className="py-2 px-2 text-center text-sm">Quantity</th>
                     <th className="py-2 px-2 text-center text-sm">
-                      Price (<MdEuro className="inline-block align-middle" />)
+                      Price (<FaRupeeSign  className="inline-block align-middle" />)
                     </th>
                   </tr>
                 </thead>
@@ -245,7 +245,7 @@ const BillingTable = () => {
                       TOTAL PRICE
                     </td>
                     <td className="py-4 px-6 sm:px-2 text-center font-semibold text-lg flex items-center justify-center">
-                      <MdEuro className="mr-1" />
+                      <FaRupeeSign  className="mr-1" />
                       {totalPrice.toFixed(2)}
                     </td>
                   </tr>
@@ -311,7 +311,7 @@ const BillingTable = () => {
                     <th className="py-2 px-2 text-center text-sm">Name</th>
                     <th className="py-2 px-2 text-center text-sm">Quantity</th>
                     <th className="py-2 px-2 text-center text-sm">
-                      Price (<MdEuro className="inline-block align-middle" />)
+                      Price (<FaRupeeSign  className="inline-block align-middle" />)
                     </th>
                   </tr>
                 </thead>
@@ -343,7 +343,7 @@ const BillingTable = () => {
                       TOTAL PRICE
                     </td>
                     <td className="py-4 px-6 sm:px-2 text-center font-semibold text-lg flex items-center justify-center">
-                      <MdEuro className="mr-1" />
+                      <FaRupeeSign  className="mr-1" />
                       {totalPrice.toFixed(2)}
                     </td>
                   </tr>

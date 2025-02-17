@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { IoMdDownload, IoMdSync } from "react-icons/io";
 import { IoSearchSharp } from "react-icons/io5";
-import { MdEuro } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 import { TiTick } from "react-icons/ti";
 import DataContextAdmin from "../../Context/DataContextAdmin";
 import { useNavigate } from "react-router-dom";
@@ -360,14 +360,14 @@ const AdminTablePage = () => {
                               key={idx}
                               className="flex items-center justify-left gap-0.5"
                             >
-                              <MdEuro className="text-gray-700" />
+                              <FaRupeeSign  className="text-gray-700" />
                               <div>{food.quantity * food.price}</div>
                             </div>
                           ))}
                         </td>
                         <td>
                           <div className="flex items-center justify-center gap-0.5">
-                            <MdEuro className="text-gray-700" />
+                            <FaRupeeSign  className="text-gray-700" />
                             {item.totalPrice}
                           </div>
                         </td>

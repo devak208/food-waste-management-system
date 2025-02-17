@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MdEuro } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 import { BsFillCartCheckFill, BsFillCartFill } from "react-icons/bs";
 import DataContextUser from "../../Context/DataContextUser";
 
@@ -179,7 +179,7 @@ export const MenuCard = ({ item }) => {
           <div className="flex flex-col flex-grow">
             <h1 className="font-bold text-lg md:text-xl">{item.name}</h1>
             <h2 className="flex items-center font-bold text-md md:text-lg text-gray-700">
-              <MdEuro className="text-gray-700" />
+              <FaRupeeSign  className="text-gray-700" />
               <span>{item.price} only</span>
             </h2>
             <div>

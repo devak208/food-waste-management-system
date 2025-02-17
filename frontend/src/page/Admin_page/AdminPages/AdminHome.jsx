@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import AdminFooter from "../components/AdminFooter";
-import AdminMenuBanner from "../components/AdminMenuBanner";
+/* import AdminMenuBanner from "../components/AdminMenuBanner"; */
 import AdminMenuGrid from "../components/AdminMenuGrid";
 import AdminNavbar from "../components/AdminNavbar";
 import AdminLoading from "../components/AdminLoading";
@@ -25,7 +25,7 @@ export default function Adminhome() {
           <AdminNavbar />
           {!isLoading && err === null && (
             <div>
-              <AdminMenuBanner />
+              {/* <AdminMenuBanner /> */}
               <AdminMenuGrid />
             </div>
           )}

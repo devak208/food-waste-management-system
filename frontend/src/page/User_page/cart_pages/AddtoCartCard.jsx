@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { MdEuro, MdDelete } from "react-icons/md";
+import {  MdDelete } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 import { CiCircleMinus } from "react-icons/ci";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import DataContextUser from "../../Context/DataContextUser";
@@ -271,7 +272,7 @@ const AddtoCartCard = ({ item }) => {
                 )}
               </div>
               <div className="flex items-center sm:w-20 w-16">
-                <MdEuro className="text-lg" />
+                <FaRupeeSign  className="text-lg" />
                 <p className="text-lg font-bold">
                   {(item.serving * item.price).toFixed(2)}
                 </p>
@@ -536,7 +537,7 @@ const AddtoCartCard = ({ item }) => {
                 )}
               </div>
               <div className="flex items-center sm:w-20 w-16">
-                <MdEuro className="text-lg" />
+                <FaRupeeSign  className="text-lg" />
                 <p className="text-lg font-bold">
                   {(item.serving * item.price).toFixed(2)}
                 </p>

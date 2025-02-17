@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { MdEuro, MdOutlineAccessTimeFilled } from "react-icons/md";
+import {  MdOutlineAccessTimeFilled } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { getUserIdData } from "../login_pages/services/storage";
@@ -325,7 +326,7 @@ export default function History() {
                                   {order.name}
                                 </p>
                                 <p className="text-md flex items-center text-slate-600">
-                                  <MdEuro />
+                                  <FaRupeeSign  />
                                   {order.price}
                                 </p>
                                 <p className="text-md font-bold text-slate-600">
