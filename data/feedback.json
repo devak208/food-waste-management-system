@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "feedback": "Great product, very satisfied with the quality!"
+  },
+  {
+    "id": "2",
+    "feedback": "The delivery was delayed, but the customer service was helpful."
+  },
+  {
+    "id": "3",
+    "feedback": "Item not as described. Requested a return."
+  },
+  {
+    "id": "4",
+    "feedback": "Excellent service and fast shipping!"
+  },
+  {
+    "id": "5",
+    "feedback": "The product is good but the packaging was damaged."
+  },
+  {
+    "id": "6",
+    "feedback": "I love this! Will definitely order again."
+  },
+  {
+    "id": "7",
+    "feedback": "The color was different from the pictures."
+  },
+  {
+    "id": "8",
+    "feedback": "Highly recommend, great value for money."
+  },
+  {
+    "id": "9",
+    "feedback": "Not satisfied with the quality, expected better."
+  },
+  {
+    "id": "10",
+    "feedback": "Perfect! Exactly what I was looking for."
+  }
+]

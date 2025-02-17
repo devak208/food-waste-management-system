@@ -1,0 +1,400 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-myorange {
+    background: "#608BC1";
+  }
+  .linkcolor {
+    background: "#0048E3";
+  }
+  .totalDiv {
+    @apply flex justify-center bg-white;
+  }
+
+  .img {
+    @apply absolute left-0 h-52 w-52 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-80 lg:w-80 xl:w-96 xl:h-96 border border-black;
+  }
+
+  .heading {
+    @apply text-xl sm:text-2xl md:text-3xl font-semibold text-customGray;
+  }
+
+  .btn {
+    @apply h-10 md:h-12 p-2 md:p-4 lg:my-4 flex justify-center items-center text-lg md:text-2xl font-bold text-white outline-none rounded-md hover:bg-slate-800 bg-black;
+  }
+
+  .filterBtn {
+    @apply flex items-center justify-around h-8 md:h-10 px-2 md:px-4 gap-3 text-sm md:text-lg rounded-lg border-0.5 border-black bg-opacity-50 hover:bg-customLightGray3 bg-white tracking-tighter md:tracking-normal;
+  }
+  .filterBtn1 {
+    @apply flex items-center justify-around h-8 md:h-10 px-2 md:px-4 gap-3 text-sm md:text-lg rounded-lg border-0.5 border-customLightGray3 hover:bg-customLightGray3 bg-white;
+  }
+
+  .filterPopup {
+    @apply flex items-center justify-around h-8 md:h-10 px-3 md:px-4 text-sm md:text-base rounded-full border-0.5 border-slate-600 bg-opacity-50 hover:border-black hover:ring-slate-700 hover:ring-1 bg-white tracking-tighter md:tracking-normal;
+  }
+
+  /* Transition class for smooth opacity changes */
+  .transition-opacity {
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Class to hide an element */
+  .hiddden {
+    opacity: 0;
+    visibility: hidden;
+    /* Ensures the element does not affect layout */
+    position: absolute;
+    /* Ensures the hidden element does not affect layout flow */
+  }
+
+  /* Class to show an element */
+  .visible {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    /* Ensures the element is positioned normally */
+  }
+}
+html {
+  width: 100%;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("/assets/TimesNewRoman/times_new_roman.ttf?v=1") format("truetype"),
+    url("/assets/TimesNewRoman/times_new_roman_bold.ttf?v=1") format("truetype"),
+    url("/assets/TimesNewRoman/times_new_roman_italic.ttf?v=1")
+      format("truetype"),
+    url("/assets/TimesNewRoman/times_new_roman_bold_italic.ttf?v=1")
+      format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("/assets/TimesNewRoman/times_new_roman_bold.ttf?v=1")
+    format("truetype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("/assets/TimesNewRoman/times_new_roman_italic.ttf?v=1")
+    format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("/assets/TimesNewRoman/times_new_roman_bold_italic.ttf?v=1")
+    format("truetype");
+  font-weight: 700; /* Bold */
+  font-style: italic;
+}
+
+body {
+  font-family: "Times New Roman", serif;
+  background-color: #fff5e1;
+  min-height: 100vh;
+}
+
+.menu-icon {
+  width: 28px;
+  height: 22px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.menu-icon span {
+  @apply bg-black;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon span:nth-child(1) {
+  top: 0;
+}
+
+.menu-icon span:nth-child(2) {
+  top: 10px;
+}
+
+.menu-icon span:nth-child(3) {
+  top: 20px;
+}
+
+.menu-icon.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 10px;
+}
+
+.menu-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 10px;
+}
+.dropdown {
+  position: absolute;
+  top: 3em;
+  left: 10px;
+  border: 1px solid rgb(224, 224, 224);
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  max-height: 0;
+  overflow: hidden;
+  @apply left-[-4px] p-1 sm:p-4 sm:left-1;
+}
+.dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 300px;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    clip-path: inherit(100% 100% 100% 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inherit(0 0 0 0);
+  }
+}
+.aview {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+.profiledrop {
+  position: absolute;
+  right: 0;
+  background-color: #f7ca76a8;
+  border: 1px solid rgb(224, 224, 224);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  max-height: 0;
+  overflow: hidden;
+  width: 200px;
+}
+
+.profiledrop.show {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 300px;
+  transition: max-height 0.3s ease;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  @apply appearance-none;
+}
+
+.custom-scroll {
+  height: 80%;
+  overflow: auto;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #ecf0f1;
+}
+
+.custom-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: #4b4b4b; /* Darker color on hover */
+}
+.circle {
+  stroke-dasharray: 176;
+  stroke-dashoffset: 176;
+}
+
+.tick {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+}
+
+.circle {
+  animation: circle 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.tick {
+  animation: tick 0.8s ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.95s;
+}
+
+@keyframes circle {
+  from {
+    stroke-dashoffset: 176;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tick {
+  from {
+    stroke-dashoffset: 50;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  border-top-color: #ff8c00; /* Darker Orange */
+  animation: spin 1s linear infinite;
+}
+
+.icon-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.animated-icon {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
+/* Move the pizza diagonally */
+.move-diagonal {
+  animation: diagonal-move 5s infinite linear;
+}
+
+/* Move the cupcake horizontally */
+.move-sideways {
+  animation: side-move 3s infinite ease-in-out;
+}
+
+/* Move the ice cream up and down */
+.move-updown {
+  animation: updown-move 4s infinite ease-in-out;
+}
+
+/* Define animations */
+
+/* Diagonal movement animation */
+@keyframes diagonal-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(300px, 300px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Horizontal side movement */
+@keyframes side-move {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(400px);
+  }
+}
+
+/* Vertical up-down movement */
+@keyframes updown-move {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-200px);
+  }
+}
+
+@keyframes move-diagonal {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, 50px);
+  }
+  50% {
+    transform: translate(0, 100px);
+  }
+  75% {
+    transform: translate(-50px, 50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes move-sideways {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(50px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animated-icon {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.move-diagonal {
+  animation-name: move-diagonal;
+}
+
+.move-sideways {
+  animation-name: move-sideways;
+}
+
