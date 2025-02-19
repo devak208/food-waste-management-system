@@ -89,10 +89,10 @@ export default function Usersignin() {
         <div className="fixed flex flex-col items-end space-y-2 top-4 right-4">
           <RiAccountCircleFill className="text-4xl sm:text-5xl" />
           <Link
-            to={"/admin/sign-in"}
+            to={"/donate/sign-in"}
             className="text-sm font-bold underline text-customBlue underline-offset-1 sm:text-base"
           >
-            Admin
+            donate
           </Link>
         </div>
 

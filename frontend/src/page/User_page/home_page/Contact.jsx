@@ -4,8 +4,8 @@ import { BsFacebook } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
-  const insta = "https://www.instagram.com/slc.wur";
-  const whatsApp = "https://chat.whatsapp.com/CZ5EIbRzxLR9xVQzMXDqbC";
+  const insta = "https://www.instagram.com";
+  const whatsApp = "https://chat.whatsapp.com";
   const gmail = "mailto:sfl.wur@gmail.com";
   const faceBook = "";
   const twitter_X = "";
@@ -14,8 +14,7 @@ const Contact = () => {
     <div className="basis-1/2 py-10 lg:pt-1">
       <div className="lg:ml-20 grid grid-cols-2 gap-x-10 gap-y-10 md:gap-5">
         <div className="flex flex-col gap-2">
-          <h1 className="heading">OPERATING DAY</h1>
-          <p className="font-extralight">Weekly once, Every Thursday.</p>
+         
         </div>
         <div className="flex flex-col gap-2">
           <h1 className="heading">LEARN MORE</h1>
@@ -26,10 +25,7 @@ const Contact = () => {
           </ul>
         </div>
         <div className="flex flex-col gap-2">
-          <h1 className="heading">ADDRESS</h1>
-          <p className="font-extralight">
-            Global Lounge, Plantage 2, 6708 WJ, Wageningen.
-          </p>
+         
         </div>
         <div className="flex flex-col gap-2">
           <h1 className="heading">SOCIAL LINKS</h1>

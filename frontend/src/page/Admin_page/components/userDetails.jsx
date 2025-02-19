@@ -75,7 +75,7 @@ const UserDetailPage = () => {
                 <p>
                   Total Price:{" "}
                   <span className="text-green-600 font-semibold">
-                    {`€ ${order.totalPrice}`}
+                    {`₹ ${order.totalPrice}`}
                   </span>
                 </p>
                 <p>
@@ -123,7 +123,7 @@ const UserDetailPage = () => {
                         <span className="font-semibold">{item.quantity}</span>,
                         Price:{" "}
                         <span className="font-semibold">
-                          {`€ ${item.quantity * item.price}`}
+                          {`₹ ${item.quantity * item.price}`}
                         </span>
                       </li>
                     ))}

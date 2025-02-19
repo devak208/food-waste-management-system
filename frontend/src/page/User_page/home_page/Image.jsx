@@ -7,7 +7,7 @@ const Image = () => {
   return (
     <>
       {/* PC VIEW */}
-      <div className="h-96 w-full mt-0 md:my-10 basis-1/2 lg:basis-2/5 ml-0 lg:ml-32 relative hidden lg:flex items-center justify-center">
+      <div className="h-96 w-full mt-0 md:my-10 basis-1/2 lg:basis-2/5 ml-0 lg:ml-32 relative hidden lg:flex items-center justify-center ">
         <div
           className="img"
           style={{ transform: "translate(35px, -35px)", zIndex: 0 }}

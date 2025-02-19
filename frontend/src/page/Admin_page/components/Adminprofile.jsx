@@ -42,7 +42,7 @@ export default function AdminProfile() {
   };
 
   const handleSignin = () => {
-    navigate("/admin/sign-in");
+    navigate("/donate/sign-in");
   };
 
   // Close dropdown on scroll
@@ -75,7 +75,7 @@ export default function AdminProfile() {
 
   const logoutUser = () => {
     Adminlogout();
-    navigate("/admin/sign-in");
+    navigate("/donate/sign-in");
   };
 
   return (

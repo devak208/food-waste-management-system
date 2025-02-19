@@ -18,6 +18,7 @@ import History from "./page/User_page/home_page/History";
 import UserDetailPage from "./page/Admin_page/components/userDetails";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LandingPage from "./page/LandingPage";
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
         draggable={true}
       />
       <Routes>
-        <Route path="/" element={<Usersignin />} />
+      <Route path="/" element={<LandingPage />} />
+        <Route path="/User/sign-in" element={<Usersignin />} />
         <Route path="*" element={<Missing />} />
         <Route path="/password-reset" element={<Userpassforget />} />
         <Route path="/New-account" element={<Usersignup />} />
@@ -69,12 +71,12 @@ function App() {
             </DataProviderUser>
           }
         />
-        <Route path="/admin/sign-in" element={<Adminsignin />} />
-        <Route path="/admin/sign-up" element={<Adminsignup />} />
-        <Route path="/admin/password-reset" element={<Adminpassforget />} />
-        <Route path="/admin/reset-password" element={<Adminpassreset />} />
+        <Route path="/donate/sign-in" element={<Adminsignin />} />
+        <Route path="/donate/sign-up" element={<Adminsignup />} />
+        <Route path="/donate/password-reset" element={<Adminpassforget />} />
+        <Route path="/donate/reset-password" element={<Adminpassreset />} />
         <Route
-          path="/admin"
+          path="/donate"
           element={
             <DataProviderUser>
               <DataProviderAdmin>
@@ -84,7 +86,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/order-details"
+          path="/donate/order-details"
           element={
             <DataProviderUser>
               <DataProviderAdmin>

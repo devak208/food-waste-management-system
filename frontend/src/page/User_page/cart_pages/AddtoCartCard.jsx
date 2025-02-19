@@ -182,7 +182,7 @@ const AddtoCartCard = ({ item }) => {
                   <div className="ml-3">
                     <p className="text-lg font-bold">{item.name}</p>
                     <p className="text-sm mt-1 w-auto">
-                      <b>Ingredients:</b>{" "}
+                      <b>Address:</b>{" "}
                       <span className="text-xs text-customLightGray2">
                         {item.ingredients}
                       </span>
@@ -212,7 +212,7 @@ const AddtoCartCard = ({ item }) => {
 
             <div className="pb-2 flex justify-start pl-2">
               <p className="text-lg lg:text-xl">
-                <b>Allergens:</b> {item.allergens}
+               {/*  <b>Allergens:</b> {item.allergens} */}
               </p>
             </div>
 
@@ -441,7 +441,7 @@ const AddtoCartCard = ({ item }) => {
                   <div className="ml-3">
                     <p className="text-lg font-bold">{item.name}</p>
                     <p className="text-sm mt-1 w-auto">
-                      <b>Ingredients:</b>{" "}
+                      <b>Address:</b>{" "}
                       <span className="text-xs text-customLightGray2">
                         {item.ingredients}
                       </span>
@@ -471,7 +471,7 @@ const AddtoCartCard = ({ item }) => {
 
             <div className="pb-2 flex justify-start pl-2">
               <p className="text-lg lg:text-xl">
-                <b>Allergens:</b> {item.allergens}
+                {/* <b>Allergens:</b> {item.allergens} */}
               </p>
             </div>
 

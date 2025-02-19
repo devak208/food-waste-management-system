@@ -12,12 +12,8 @@ const Description = () => {
   return (
     <div className="totalDiv">
       <div className="container my-10 p-4 lg:p-2">
-        <p className="text-sm lg:text-xl tracking-normal leading-relaxed text-gray-700">
-          Discover the comforting flavors of our food, crafted with love and
-          care. Our dishes are prepared using fresh, high-quality ingredients to
-          bring you the taste of home-cooked meals right to your doorstep.
-          Perfect for any occasion, our menu offers a variety of options to
-          satisfy every palate.
+      <p className="text-sm lg:text-xl tracking-normal leading-relaxed text-gray-700">
+          Food waste is a growing concern with significant environmental impacts. By reducing waste, we conserve resources, reduce pollution, and contribute to a sustainable future. Join us in spreading awareness and taking action to minimize food waste and protect our planet for generations to come.
         </p>
 
         {/* Cart symbol */}

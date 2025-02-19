@@ -66,7 +66,7 @@ export default function Adminsignup() {
       try {
         setSendButton(false);
         setLoading(true);
-        await sendOtpApi("devakdevak208@gmail.com"); // Send OTP to admin email
+        await sendOtpApi(email); // Send OTP to admin email
 
         setOtpVisible(true);
         setSendButton(false);
@@ -93,7 +93,7 @@ export default function Adminsignup() {
     }
 
     try {
-      await verifiOtp("devakdevak208@gmail.com", Otp); // Verify OTP with admin email
+      await verifiOtp(email, Otp); // Verify OTP with admin email
 
       setResendOtp(false);
       setverifybut(false);
@@ -115,7 +115,7 @@ export default function Adminsignup() {
 
   const handleResendOtp = async () => {
     try {
-      await sendOtpApi("devakdevak208@gmail.com"); // Resend OTP to admin email
+      await sendOtpApi(email); // Resend OTP to admin email
       setOtp(""); // Clear OTP input
       setOtpTimer(60); // Reset the OTP timer to 60 seconds
       setResendOtp(false); // Hide the resend button after OTP is resent
@@ -146,7 +146,7 @@ export default function Adminsignup() {
       await AdminregisterApi(username, email, password).then((response) => {
         AdminstoreuserData(response.data.idToken);
       });
-      return <Navigate to={"/admin"} />;
+      return <Navigate to={"/donate"} />;
     } catch (err) {
       const errorCode = err?.response?.data?.error?.message;
       let message = "Registration failed. Please try again.";
@@ -166,7 +166,7 @@ export default function Adminsignup() {
   };
 
   if (AdminisAunthenticated()) {
-    return <Navigate to={"/admin"} />;
+    return <Navigate to={"/donate"} />;
   }
   return (
     <div className="relative min-h-screen bg-myorange font-times flex items-center justify-center">
@@ -175,7 +175,7 @@ export default function Adminsignup() {
           <div className="flex justify-center mb-4 sm:mb-6">
             <div className="flex items-center justify-center h-12 bg-black rounded-lg w-36 sm:w-52 sm:h-14">
               <h1 className="text-xl font-bold text-center text-white sm:text-3xl">
-                Admin Sign Up
+              donate Sign Up
               </h1>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function Adminsignup() {
                   <input
                     type="number"
                     className="w-full px-3 py-2 text-sm font-medium border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 sm:text-base"
-                    placeholder="Enter OTP Send to Admin Mail"
+                    placeholder="Enter OTP Send to donate Mail"
                     value={Otp}
                     onChange={(e) => setOtp(e.target.value)}
                     required
@@ -347,7 +347,7 @@ export default function Adminsignup() {
               <p className="text-sm sm:text-base">
                 Already have account?{" "}
                 <Link
-                  to={"/admin/sign-in"}
+                  to={"/donate/sign-in"}
                   className="text-white bg-black hover:bg-slate-800 p-2 rounded-md"
                 >
                   Sign in

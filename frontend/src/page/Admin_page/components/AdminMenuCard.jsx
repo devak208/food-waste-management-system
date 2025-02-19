@@ -221,7 +221,7 @@ export const AdminMenuCard = ({ item }) => {
             </h2>
             <div>
               <span className="font-bold text-base">
-                Ingredients:{" "}
+                Address:{" "}
                 <span className="font-normal text-sm md:text-base">
                   {item.ingredients}
                 </span>
@@ -270,10 +270,10 @@ export const AdminMenuCard = ({ item }) => {
               {item.category === 2 && "Desserts"}
             </span>
           </div>
-          <div className="font-bold text-xl md:text-2xl">
+          {/* <div className="font-bold text-xl md:text-2xl">
             Allergens:{" "}
             <span className="font-normal break-words">{item.allergens}</span>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -460,12 +460,12 @@ export const AdminMenuCard = ({ item }) => {
             {/* Ingredients */}
             <div className="flex gap-3 items-center">
               <label htmlFor="foodIngredients" className="w-1/4">
-                Ingredients:
+                Address:
               </label>
               <textarea
                 required
                 id="foodIngredients"
-                placeholder="Enter the ingredients"
+                placeholder="Enter the Address"
                 value={foodIngredients}
                 onChange={(e) => setFoodIngredients(e.target.value)}
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-md h-24"

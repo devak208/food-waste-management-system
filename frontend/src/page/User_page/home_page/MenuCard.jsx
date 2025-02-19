@@ -184,7 +184,7 @@ export const MenuCard = ({ item }) => {
             </h2>
             <div>
               <span className="font-bold text-base">
-                Ingredients:{" "}
+                Address:{" "}
                 <span className="font-normal text-sm md:text-base">
                   {item.ingredients}
                 </span>
@@ -308,10 +308,10 @@ export const MenuCard = ({ item }) => {
             )}
           </div>
         </div>
-        <div className="font-bold text-lg md:text-xl py-1">
+{/*         <div className="font-bold text-lg md:text-xl py-1">
           Allergens:{" "}
           <span className="font-normal break-words">{item.allergens}</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

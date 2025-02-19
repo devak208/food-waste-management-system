@@ -77,7 +77,7 @@ const AdminNavbar = () => {
         <div className="flex flex-row items-center gap-2 basis-1/2">
           <button className="px-2 py-1 rounded-lg">
             <Link
-              to={"/admin"}
+              to={"/donate"}
               className="flex text-2xl justify-center items-center gap-1"
             >
               <IoArrowBackCircleSharp className="h-9 w-9" />
@@ -120,7 +120,7 @@ const AdminNavbar = () => {
           <div className="flex flex-row items-center">
             <button className="flex h-9 items-center px-2 py-1 rounded-lg">
               <Link
-                to={"/admin"}
+                to={"/donate"}
                 className="flex text-xl justify-center items-center gap-1"
               >
                 <IoArrowBackCircleSharp className="h-9 w-9" />

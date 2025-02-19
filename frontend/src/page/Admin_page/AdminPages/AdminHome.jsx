@@ -10,7 +10,7 @@ import { Navigate } from "react-router-dom";
 
 export default function Adminhome() {
   useEffect(() => {
-    document.title = "SLC Admin";
+    document.title = "SLC donate";
     return () => {
       document.title = "SLC";
     };

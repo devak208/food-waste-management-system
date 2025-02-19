@@ -15,7 +15,7 @@ export default function History() {
   const [currentIndexes, setCurrentIndexes] = useState([]);
   const [pauseAutoScroll, setPauseAutoScroll] = useState(false);
   const [newUser, setNewUser] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const historyRef = useRef(null);
 
   const formatDate = (dateString) => {

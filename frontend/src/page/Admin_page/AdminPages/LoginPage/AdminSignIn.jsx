@@ -78,7 +78,7 @@ export default function Adminsignin() {
   }
 
   if (AdminisAunthenticated()) {
-    return <Navigate to={"/admin"} />;
+    return <Navigate to={"/donate"} />;
   }
 
   return (
@@ -94,7 +94,7 @@ export default function Adminsignin() {
             <div className="flex justify-center mb-4 sm:mb-6">
               <div className="flex items-center justify-center h-12 bg-black rounded-lg w-36 sm:w-48 sm:h-14">
                 <h1 className="text-xl font-bold text-white sm:text-3xl">
-                  Admin Sign In
+                 Sign In
                 </h1>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function Adminsignin() {
               {/* Forget Password Link */}
               <div className="flex justify-end">
                 <Link
-                  to={"/admin/password-reset"}
+                  to={"/donate/password-reset"}
                   className="text-sm text-customBlue sm:text-base"
                 >
                   Forget Password?
@@ -184,7 +184,7 @@ export default function Adminsignin() {
                 <p className="text-sm sm:text-base">
                   Don't have an account?{" "}
                   <Link
-                    to={"/admin/sign-up"}
+                    to={"/donate/sign-up"}
                     className="text-white bg-black hover:bg-slate-800 p-2 rounded-md"
                   >
                     Sign up

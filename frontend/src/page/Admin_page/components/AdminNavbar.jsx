@@ -65,7 +65,7 @@ const AdminNavbar = () => {
       {/* PC View */}
       <div className="hidden md:flex md:flex-row gap-4 justify-between items-center py-2 container bg-transparent">
         <div className="flex text-4xl tracking-tight items-end font-semibold">
-          Admin
+        donate
         </div>
         {/* Search Bar */}
         <div className="flex gap-10 items-center basis-1/2">
@@ -86,7 +86,7 @@ const AdminNavbar = () => {
         <div>
           <button className="shadow-lg px-2 py-1 rounded-lg border-0.5 border-black bg-white bg-opacity-50">
             <Link
-              to={"/admin/order-details"}
+              to={"/donate/order-details"}
               className="flex text-2xl justify-center items-center gap-1"
             >
               Details
@@ -144,7 +144,7 @@ const AdminNavbar = () => {
       <div className="flex md:hidden flex-col justify-between items-center pt-2 container bg-transparent">
         <div className="flex justify-between items-center gap-3 px-1 w-full">
           <div className="flex text-3xl tracking-tighter items-end font-semibold">
-            Admin
+          donate
           </div>
           <form
             onSubmit={(e) => e.preventDefault()}
@@ -170,7 +170,7 @@ const AdminNavbar = () => {
         <div className="flex items-center justify-between px-1 w-full">
           <button className="flex items-center shadow-lg h-9 px-2 py-1 rounded-lg border-0.5 border-black bg-white bg-opacity-50">
             <Link
-              to={"/admin/order-details"}
+              to={"/donate/order-details"}
               className="flex text-xl justify-center items-center gap-1"
             >
               Details
