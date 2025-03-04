@@ -24,19 +24,12 @@ const ably = initializeAbly();
 // Middlewares
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:3000"];
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.error("Blocked Origin:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "*", // Allows access from anywhere
     methods: ["POST", "GET", "DELETE", "PUT"],
-    credentials: true,
+    credentials: true, 
   })
 );
+
 
 
 app.use(express.json());

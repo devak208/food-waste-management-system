@@ -3,12 +3,12 @@ require("dotenv").config();
 
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
-  ssl: { rejectUnauthorized: false }, // Required for Neon cloud database
+  ssl: { rejectUnauthorized: false }, // Required for Vercel Postgres
 });
 
 pool
   .connect()
-  .then(() => console.log("✅ Connected to Neon PostgreSQL successfully."))
+  .then(() => console.log("✅ Connected to Vercel PostgreSQL successfully."))
   .catch((err) => console.error("❌ Database connection error:", err));
 
 const query = async (text, params) => {
@@ -19,9 +19,7 @@ const query = async (text, params) => {
     const result = await pool.query(text, params);
     
     console.log(`✅ Query executed successfully.`);
-    console.log(`📋 Database Response:`, JSON.stringify(result.rows, null, 2)); // Logs response in a readable format
-    
-    return result;
+    return result.rows;
   } catch (err) {
     console.error(`❌ Query execution error:`, err);
     throw err;
