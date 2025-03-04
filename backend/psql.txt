@@ -1,191 +1,172 @@
 
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 
-    CREATE SEQUENCE IF NOT EXISTS public.users_user_id_seq;
+        CREATE SEQUENCE IF NOT EXISTS public.users_user_id_seq;
 
 
-    CREATE TABLE IF NOT EXISTS public.users
-    (
-        user_id uuid NOT NULL DEFAULT uuid_generate_v4(),
-        name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        phone_number character varying(15) COLLATE pg_catalog."default",
-        email character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        CONSTRAINT users_pkey PRIMARY KEY (user_id),
-        CONSTRAINT users_email_key UNIQUE (email)
-    )
-    TABLESPACE pg_default;
+        CREATE TABLE IF NOT EXISTS public.users
+        (
+            user_id uuid NOT NULL DEFAULT uuid_generate_v4(),
+            name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            phone_number character varying(15) COLLATE pg_catalog."default",
+            email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            CONSTRAINT users_pkey PRIMARY KEY (user_id),
+            CONSTRAINT users_email_key UNIQUE (email)
+        )
+        TABLESPACE pg_default;
 
-    ALTER TABLE IF EXISTS public.users
-        OWNER to default;
-
-
-    CREATE SEQUENCE IF NOT EXISTS public.feedback_id_seq;
+        ALTER TABLE IF EXISTS public.users
+            OWNER to default;
 
 
-    CREATE TABLE IF NOT EXISTS public.feedback (
-        id integer NOT NULL DEFAULT nextval('feedback_id_seq'::regclass),
-        comments text COLLATE pg_catalog."default" NOT NULL,
-        "timestamp" timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT feedback_pkey PRIMARY KEY (id)
-    )
-    TABLESPACE pg_default;
-
-    ALTER TABLE IF EXISTS public.feedback
-        OWNER TO default;
+        CREATE SEQUENCE IF NOT EXISTS public.feedback_id_seq;
 
 
-    CREATE SEQUENCE IF NOT EXISTS public.food_id_seq;
+        CREATE TABLE IF NOT EXISTS public.feedback (
+            id integer NOT NULL DEFAULT nextval('feedback_id_seq'::regclass),
+            comments text COLLATE pg_catalog."default" NOT NULL,
+            "timestamp" timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+            CONSTRAINT feedback_pkey PRIMARY KEY (id)
+        )
+        TABLESPACE pg_default;
 
-    CREATE TABLE IF NOT EXISTS public.food (
-        id integer NOT NULL DEFAULT nextval('food_id_seq'::regclass),
-        name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        category integer,
-        price numeric(10,2) NOT NULL,
-        ingredients text COLLATE pg_catalog."default",
-        quantity integer NOT NULL,
-        serving integer,
-        total integer,
-        allergens text COLLATE pg_catalog."default",
-        veg_non_veg integer,
-        "cartStatus" boolean,
-        CONSTRAINT food_pkey PRIMARY KEY (id),
-        CONSTRAINT food_quantity_check CHECK (quantity >= 0)
-    )
-    TABLESPACE pg_default;
-
-    ALTER TABLE IF EXISTS public.food
-        OWNER TO default;
+        ALTER TABLE IF EXISTS public.feedback
+            OWNER TO default;
 
 
-    CREATE SEQUENCE IF NOT EXISTS public.orders_order_id_seq;
+        CREATE SEQUENCE IF NOT EXISTS public.food_id_seq;
+
+        CREATE TABLE IF NOT EXISTS public.food (
+            id integer NOT NULL DEFAULT nextval('food_id_seq'::regclass),
+            name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            category integer,
+            price numeric(10,2) NOT NULL,
+            ingredients text COLLATE pg_catalog."default",
+            quantity integer NOT NULL,
+            serving integer,
+            total integer,
+            allergens text COLLATE pg_catalog."default",
+            veg_non_veg integer,
+            "cartStatus" boolean,
+            CONSTRAINT food_pkey PRIMARY KEY (id),
+            CONSTRAINT food_quantity_check CHECK (quantity >= 0)
+        )
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.food
+            OWNER TO default;
 
 
-    CREATE TABLE IF NOT EXISTS public.orders (
-        order_id character varying(4) COLLATE pg_catalog."default" NOT NULL DEFAULT nextval('orders_order_id_seq'::regclass),
-        user_id uuid,
-        amount numeric(10,2) NOT NULL,
-        payment_status character varying(20) COLLATE pg_catalog."default",
-        delivery_status character varying(20) COLLATE pg_catalog."default",
-        "timestamp" timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT orders_pkey PRIMARY KEY (order_id),
-        CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id)
-            REFERENCES public.users (user_id) MATCH SIMPLE
-            ON UPDATE NO ACTION
-            ON DELETE CASCADE,
-        CONSTRAINT orders_payment_status_check CHECK (payment_status::text = ANY (ARRAY['Completed', 'Pending', 'Failed'])),
-        CONSTRAINT orders_delivery_status_check CHECK (delivery_status::text = ANY (ARRAY['Pending', 'Delivered']))
-    )
-    TABLESPACE pg_default;
-
-    ALTER TABLE IF EXISTS public.orders
-        OWNER TO default;
+        CREATE SEQUENCE IF NOT EXISTS public.orders_order_id_seq;
 
 
-    CREATE SEQUENCE IF NOT EXISTS public.order_items_id_seq;
+        CREATE TABLE IF NOT EXISTS public.orders (
+            order_id character varying(4) COLLATE pg_catalog."default" NOT NULL DEFAULT nextval('orders_order_id_seq'::regclass),
+            user_id uuid,
+            amount numeric(10,2) NOT NULL,
+            payment_status character varying(20) COLLATE pg_catalog."default",
+            delivery_status character varying(20) COLLATE pg_catalog."default",
+            "timestamp" timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+            CONSTRAINT orders_pkey PRIMARY KEY (order_id),
+            CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id)
+                REFERENCES public.users (user_id) MATCH SIMPLE
+                ON UPDATE NO ACTION
+                ON DELETE CASCADE,
+            CONSTRAINT orders_payment_status_check CHECK (payment_status::text = ANY (ARRAY['Completed', 'Pending', 'Failed'])),
+            CONSTRAINT orders_delivery_status_check CHECK (delivery_status::text = ANY (ARRAY['Pending', 'Delivered']))
+        )
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.orders
+            OWNER TO default;
 
 
-    CREATE TABLE IF NOT EXISTS public.order_items (
-        id integer NOT NULL DEFAULT nextval('order_items_id_seq'::regclass),
-        order_id character varying(4) COLLATE pg_catalog."default",
-        item_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        quantity integer NOT NULL,
-        price numeric(10,2) NOT NULL,
-        category character varying(100) COLLATE pg_catalog."default",
-        veg_non_veg integer,
-        CONSTRAINT order_items_pkey PRIMARY KEY (id),
-        CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id)
-            REFERENCES public.orders (order_id) MATCH SIMPLE
-            ON UPDATE NO ACTION
-            ON DELETE CASCADE,
-        CONSTRAINT order_items_quantity_check CHECK (quantity >= 0),
-        CONSTRAINT order_items_veg_non_veg_check CHECK (veg_non_veg = ANY (ARRAY[0, 1]))
-    )
-    TABLESPACE pg_default;
-
-    ALTER TABLE IF EXISTS public.order_items
-        OWNER TO default;
+        CREATE SEQUENCE IF NOT EXISTS public.order_items_id_seq;
 
 
-    CREATE SEQUENCE IF NOT EXISTS public.order_timings_id_seq;
+        CREATE TABLE IF NOT EXISTS public.order_items (
+            id integer NOT NULL DEFAULT nextval('order_items_id_seq'::regclass),
+            order_id character varying(4) COLLATE pg_catalog."default",
+            item_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            quantity integer NOT NULL,
+            price numeric(10,2) NOT NULL,
+            category character varying(100) COLLATE pg_catalog."default",
+            veg_non_veg integer,
+            CONSTRAINT order_items_pkey PRIMARY KEY (id),
+            CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id)
+                REFERENCES public.orders (order_id) MATCH SIMPLE
+                ON UPDATE NO ACTION
+                ON DELETE CASCADE,
+            CONSTRAINT order_items_quantity_check CHECK (quantity >= 0),
+            CONSTRAINT order_items_veg_non_veg_check CHECK (veg_non_veg = ANY (ARRAY[0, 1]))
+        )
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.order_items
+            OWNER TO default;
 
 
-    CREATE TABLE IF NOT EXISTS public.order_timings (
-        id integer NOT NULL,
-        timestamp character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        CONSTRAINT order_timings_pkey PRIMARY KEY (id)
-    )
-    TABLESPACE pg_default;
-
-    ALTER TABLE IF EXISTS public.order_timings
-        OWNER TO default;
+        CREATE SEQUENCE IF NOT EXISTS public.order_timings_id_seq;
 
 
-    CREATE TABLE IF NOT EXISTS public.otp_codes
-    (
-        email character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        hashed_otp character varying(255) COLLATE pg_catalog."default",
-        secret character varying(255) COLLATE pg_catalog."default",
-        expires_at timestamp without time zone,
-        attempts integer,
-        CONSTRAINT otp_codes_pkey PRIMARY KEY (email)
-    )
-    TABLESPACE pg_default;
+        CREATE TABLE IF NOT EXISTS public.order_timings (
+            id integer NOT NULL,
+            timestamp character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            CONSTRAINT order_timings_pkey PRIMARY KEY (id)
+        )
+        TABLESPACE pg_default;
+
+        ALTER TABLE IF EXISTS public.order_timings
+            OWNER TO default;
 
 
-    ALTER TABLE public.order_items
-        DROP CONSTRAINT order_items_veg_non_veg_check,
-        ADD CONSTRAINT order_items_veg_non_veg_check CHECK (veg_non_veg = ANY (ARRAY[0, 1, 2]));
-        
-    CREATE TABLE IF NOT EXISTS public.otp_codes
-    (
-        email character varying(255) COLLATE pg_catalog."default" NOT NULL,
-        hashed_otp character varying(255) COLLATE pg_catalog."default",
-        secret character varying(255) COLLATE pg_catalog."default",
-        expires_at timestamp without time zone,
-        attempts integer,
-        CONSTRAINT otp_codes_pkey PRIMARY KEY (email)
-    )
-    TABLESPACE pg_default;
+        CREATE TABLE IF NOT EXISTS public.otp_codes
+        (
+            email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            hashed_otp character varying(255) COLLATE pg_catalog."default",
+            secret character varying(255) COLLATE pg_catalog."default",
+            expires_at timestamp without time zone,
+            attempts integer,
+            CONSTRAINT otp_codes_pkey PRIMARY KEY (email)
+        )
+        TABLESPACE pg_default;
 
 
-    ALTER TABLE public.users
-    ADD COLUMN cart_items jsonb NOT NULL DEFAULT '[]'::jsonb;
+        ALTER TABLE public.order_items
+            DROP CONSTRAINT order_items_veg_non_veg_check,
+            ADD CONSTRAINT order_items_veg_non_veg_check CHECK (veg_non_veg = ANY (ARRAY[0, 1, 2]));
+            
+        CREATE TABLE IF NOT EXISTS public.otp_codes
+        (
+            email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+            hashed_otp character varying(255) COLLATE pg_catalog."default",
+            secret character varying(255) COLLATE pg_catalog."default",
+            expires_at timestamp without time zone,
+            attempts integer,
+            CONSTRAINT otp_codes_pkey PRIMARY KEY (email)
+        )
+        TABLESPACE pg_default;
 
 
-    INSERT INTO public.order_timings (id, timestamp)
-    VALUES 
-    (1, '2024-11-18T17:47:00.000Z'),
-    (2, '2024-11-20T17:47:00.000Z');
+        ALTER TABLE public.users
+        ADD COLUMN cart_items jsonb NOT NULL DEFAULT '[]'::jsonb;
 
 
-    ### Helper queries ###
-
-    --Inserting into tableINSERT INTO public.food (name, category, price, ingredients, quantity, serving, total, allergens, veg_non_veg, "cartStatus") VALUES 
-        ('Margherita Pizza', 1, 8.99, 'Tomato, Cheese, Basil', 15, 0, 20, 'Milk', 1, false), 
-        ('Chicken Burger', 1, 5.49, 'Chicken, Lettuce, Cheese, Bun', 5, 0, 15, 'Gluten, Milk', 0, false), 
-        ('Vegan Salad', 0, 6.99, 'Lettuce, Tomato, Cucumber, Avocado', 5, 0, 10, 'None', 2, false), 
-        ('Pasta Alfredo', 1, 9.99, 'Pasta, Cream, Cheese', 20, 0, 25, 'Milk, Gluten', 1, false), 
-        ('Grilled Chicken', 1, 12.49, 'Chicken, Herbs, Spices', 25, 0, 30, 'None', 0, false), 
-        ('Veggie Burger', 1, 6.29, 'Veggie Patty, Lettuce, Tomato, Bun', 15, 0, 20, 'Gluten', 1, false), 
-        ('Chocolate Cake', 2, 4.79, 'Chocolate, Flour, Sugar', 10, 0, 15, 'Gluten', 1, false), 
-        ('Cheese Nachos', 0, 4.99, 'Nachos, Cheese, Jalapeno', 12, 0, 22, 'Milk', 1, false), 
-        ('Fish Tacos', 1, 7.50, 'Fish, Tortilla, Cabbage, Sauce', 8, 0, 12, 'Gluten, Fish', 0, false), 
-        ('Vegan Burrito', 1, 7.99, 'Beans, Rice, Avocado, Tortilla', 11, 0, 17, 'Gluten', 2, false),
-        ('Apple Pie', 2, 3.99, 'Apples, Cinnamon, Pastry', 0, 0, 10, 'Gluten', 1, false), 
-        ('Lemon Sorbet', 2, 4.50, 'Lemon, Sugar, Water', 5, 0, 15, 'None', 2, false), 
-        ('Cheesecake', 2, 5.99, 'Cream Cheese, Sugar, Graham Crust', 8, 0, 12, 'Milk', 1, false), 
-        ('Brownie Sundae', 2, 6.49, 'Brownie, Ice Cream, Chocolate Sauce', 8, 0, 10, 'Milk', 1, false);
+        INSERT INTO public.order_timings (id, timestamp)
+        VALUES 
+        (1, '2024-11-18T17:47:00.000Z'),
+        (2, '2024-11-20T17:47:00.000Z');
 
 
 
-    DELETE FROM feedback;
+        DELETE FROM feedback;
 
-    \d feedback
+        \d feedback
 
-    ALTER SEQUENCE feedback_id_seq RESTART WITH 1;
+        ALTER SEQUENCE feedback_id_seq RESTART WITH 1;
 
 
-    UPDATE public.users
-    SET cart_items = '[]'::jsonb;
+        UPDATE public.users
+        SET cart_items = '[]'::jsonb;
 
