@@ -1,21 +1,31 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-const pool = process.env.POSTGRES_URL
-  ? new Pool({
-      connectionString: process.env.POSTGRES_URL,
-    })
-  : new Pool({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_DATABASE,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT,
-    });
+const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+  ssl: { rejectUnauthorized: false }, // Required for Neon cloud database
+});
 
 pool
   .connect()
-  .then(() => console.log("Connected to the PostgreSQL database successfully."))
-  .catch((err) => console.error("Database connection error:", err));
+  .then(() => console.log("✅ Connected to Neon PostgreSQL successfully."))
+  .catch((err) => console.error("❌ Database connection error:", err));
 
-module.exports = pool;
+const query = async (text, params) => {
+  console.log(`📡 Executing query: ${text}`);
+  if (params) console.log(`📌 With parameters: ${JSON.stringify(params)}`);
+
+  try {
+    const result = await pool.query(text, params);
+    
+    console.log(`✅ Query executed successfully.`);
+    console.log(`📋 Database Response:`, JSON.stringify(result.rows, null, 2)); // Logs response in a readable format
+    
+    return result;
+  } catch (err) {
+    console.error(`❌ Query execution error:`, err);
+    throw err;
+  }
+};
+
+module.exports = { query };

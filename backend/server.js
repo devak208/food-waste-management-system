@@ -25,7 +25,8 @@ const ably = initializeAbly();
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (origin === process.env.CLIENT_URL) {
+      const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:3000"];
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         console.error("Blocked Origin:", origin);
@@ -36,6 +37,7 @@ app.use(
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 
